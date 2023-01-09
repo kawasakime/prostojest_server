@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-require('dotenv').config()
+require("dotenv").config();
 
 const nodeMailer = require("nodemailer");
 
@@ -24,7 +24,7 @@ app.post("/api", async (req, res) => {
 
   let itemsText = items.map(
     (item) =>
-      `<p>${item.name} ${item.selected} ${item.count}шт - общая цена ${item.price} рублей</p>`
+      `<p>${item.name} ${item.color} ${item.selected} ${item.count}шт - общая цена ${item.price} рублей</p>`
   );
 
   itemsText = itemsText.join(" \n");
@@ -64,4 +64,4 @@ app.post("/api", async (req, res) => {
   });
 });
 
-app.listen(port, () => console.log('STARTED'));
+app.listen(port, () => console.log("STARTED"));
