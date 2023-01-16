@@ -1,6 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const https = require("https");
+const fs = require("fs");
+
+const privateKey = fs.readFileSync("./private.key", "utf8");
+const certificate = fs.readFileSync("./mydomain.csr", "utf8");
+
+const credentials = { key: privateKey, cert: certificate };
 
 require("dotenv").config();
 
@@ -64,4 +71,6 @@ app.post("/api", async (req, res) => {
   });
 });
 
-app.listen(port, () => console.log("STARTED"));
+const httpsServer = https.createServer(credentials, app);
+
+httpsServer(port, () => console.log("STARTED"));
