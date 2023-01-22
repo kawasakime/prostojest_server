@@ -13,13 +13,13 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.json({
     message: "SUCCESS",
   });
 });
 
-app.post("/api", async (req, res) => {
+app.post("/", async (req, res) => {
   const { name, phone, items } = req.body;
 
   let itemsText = items.map(
